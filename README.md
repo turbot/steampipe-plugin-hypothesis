@@ -28,35 +28,14 @@ $ make
 
 $ steampipe query
 
-> select * from hello
-
-+----+----------+
-| id | greeting |
-+----+----------+
-| 1  | Hello    |
-+----+----------+
-| 2  | Hello    |
-+----+----------+
-| 3  | Hello    |
-+----+----------+
-
-> select * from hello where id = 1
-
-+----+----------+
-| id | greeting |
-+----+----------+
-| 1  | Hello    |
-+----+----------+
-
-> select * from hello where id >= 2
-
-+----+----------+
-| id | greeting |
-+----+----------+
-| 2  | Hello    |
-+----+----------+
-| 3  | Hello    |
-+----+----------+
+> select * from hello_1 order by id
++----+----------+-------------------+
+| id | greeting | json              |
++----+----------+-------------------+
+| 1  | Hello    | {"hello":"world"} |
+| 2  | Hello    | {"hello":"world"} |
+| 3  | Hello    | {"hello":"world"} |
++----+----------+-------------------+
 
 ```
 
