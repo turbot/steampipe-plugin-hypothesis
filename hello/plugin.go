@@ -11,7 +11,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 		Name:             "steampipe-plugin-hello",
 		DefaultTransform: transform.FromJSONTag().NullIfZero(),
 		TableMap: map[string]*plugin.Table{
-			"hello_1": tableHello1(ctx),
+			"hello": tableHello(ctx),
 		},
 	}
 	return p

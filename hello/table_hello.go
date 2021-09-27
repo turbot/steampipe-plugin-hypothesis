@@ -6,15 +6,15 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/plugin"
 )
 
-type Hello1 struct {
+type Hello struct {
 	ID       int    `json:"id"`
 	Greeting string `json:"greeting"`
 	JSON	 string `json:"json"`
 }
 
-func tableHello1(ctx context.Context) *plugin.Table {
+func tableHello(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
-		Name:        "hello_1",
+		Name:        "hello",
 		Description: "Simplest Steampipe plugin",
 		List: &plugin.ListConfig{
 			Hydrate: listGreeting,
@@ -30,7 +30,7 @@ func tableHello1(ctx context.Context) *plugin.Table {
 func listGreeting(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	for i := 1; i <= 3; i++ {
 		plugin.Logger(ctx).Info("listGreeting", "number", i)		
-		greeting := Hello1{i, "Hello", "{\"hello\": \"world\"}"}
+		greeting := Hello{i, "Hello", "{\"hello\": \"world\"}"}
 		d.StreamListItem(ctx, &greeting)
 	}
 	return nil, nil

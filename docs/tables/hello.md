@@ -1,11 +1,11 @@
-# Table: hello_1
+# Table: hello
 
 This table displays a hardcoded greeting.
 
 ## Examples
 
 ```
-> select *, pg_typeof(json) from hello_1
+> select *, pg_typeof(json) from hello
 +----+----------+-------------------+-----------+
 | id | greeting | json              | pg_typeof |
 +----+----------+-------------------+-----------+
@@ -14,7 +14,7 @@ This table displays a hardcoded greeting.
 | 3  | Hello    | {"hello":"world"} | jsonb     |
 +----+----------+-------------------+-----------+
 
-> select *, json->>'hello' as json_value from hello_1 where id = 2
+> select *, json->>'hello' as json_value from hello where id = 2
 +----+----------+-------------------+------------+
 | id | greeting | json              | json_value |
 +----+----------+-------------------+------------+

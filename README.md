@@ -28,7 +28,7 @@ $ make
 
 $ steampipe query
 
-> select * from hello_1 order by id
+> select * from hello order by id
 +----+----------+-------------------+
 | id | greeting | json              |
 +----+----------+-------------------+
