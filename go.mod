@@ -1,4 +1,4 @@
-module github.com/judell/steampipe-plugin-hello
+module github.com/judell/steampipe-plugin-hypothesis
 
 go 1.17
 

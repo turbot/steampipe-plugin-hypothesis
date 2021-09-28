@@ -1,4 +1,4 @@
-package hello
+package hypothesis
 
 import (
 	"context"
@@ -8,10 +8,10 @@ import (
 
 func Plugin(ctx context.Context) *plugin.Plugin {
 	p := &plugin.Plugin{
-		Name:             "steampipe-plugin-hello",
+		Name:             "steampipe-plugin-hypothesis",
 		DefaultTransform: transform.FromJSONTag().NullIfZero(),
 		TableMap: map[string]*plugin.Table{
-			"hello": tableHello(ctx),
+			"hypothesis_search": tableHypothesisSearch(ctx),
 		},
 	}
 	return p

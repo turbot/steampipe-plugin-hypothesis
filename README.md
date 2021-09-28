@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">Hello Plugin for Steampipe</h1>
+  <h1 align="center">hypothesis Plugin for Steampipe</h1>
 </p>
 
 <p align="center">
@@ -20,21 +20,21 @@ Learn about [Steampipe](https://steampipe.io/)
 Install go, then:
 
 ```
-$ git clone https://github.com/judell/steampipe-plugin-hello
+$ git clone https://github.com/judell/steampipe-plugin-hypothesis
 
-$ cp ./config/hello.scp ~/.steampipe/config
+$ cp ./config/hypothesis.scp ~/.steampipe/config
 
 $ make
 
 $ steampipe query
 
-> select * from hello order by id
+> select * from hypothesis order by id
 +----+----------+-------------------+
 | id | greeting | json              |
 +----+----------+-------------------+
-| 1  | Hello    | {"hello":"world"} |
-| 2  | Hello    | {"hello":"world"} |
-| 3  | Hello    | {"hello":"world"} |
+| 1  | hypothesis    | {"hypothesis":"world"} |
+| 2  | hypothesis    | {"hypothesis":"world"} |
+| 3  | hypothesis    | {"hypothesis":"world"} |
 +----+----------+-------------------+
 
 ```

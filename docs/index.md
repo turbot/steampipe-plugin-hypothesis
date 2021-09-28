@@ -3,14 +3,14 @@ organization: Turbot
 category: ["software development"]
 icon_url: "/images/plugins/turbot/steampipe.svg"
 brand_color: "#a42a2d1a"
-display_name: Hello
-name: hello
+display_name: hypothesis
+name: hypothesis
 description: Steampipe plugin to show how to write plugins
 ---
 
-# Hello
+# hypothesis
 
-[Hello]() is a series of examples showing how to write Steampipe plugins
+[hypothesis]() is a series of examples showing how to write Steampipe plugins
 
 
 ## Installation
@@ -21,11 +21,11 @@ Build and use locally.
 ## Tables
 
 ```
-> .inspect hello
+> .inspect hypothesis
 +--------------------+-----------------------------------------------------------------------------+
 | TABLE              | DESCRIPTION                                                                 |
 +--------------------+-----------------------------------------------------------------------------+
-| hello              | Simplest possible way to populate a query with data                         |
+| hypothesis              | Simplest possible way to populate a query with data                         |
 +--------------------+-----------------------------------------------------------------------------+
 ```
 
@@ -35,10 +35,10 @@ None.
 
 ## Connection Configuration
 
-Put this into ~/.steampipe/config/hello.spc`.
+Put this into ~/.steampipe/config/hypothesis.spc`.
 
 ```
-connection "hello" {
-  plugin    = "hello"
+connection "hypothesis" {
+  plugin    = "hypothesis"
 }
 ```

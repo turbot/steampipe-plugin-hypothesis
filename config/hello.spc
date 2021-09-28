@@ -1,3 +1,0 @@
-connection "hello" {
-  plugin = "hello"
-}
