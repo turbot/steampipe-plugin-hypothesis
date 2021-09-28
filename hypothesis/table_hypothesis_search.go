@@ -3,11 +3,13 @@ package hypothesis
 import (
 	"context"
 	"encoding/json"
-//	"fmt"
-	"github.com/turbot/steampipe-plugin-sdk/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/plugin"
 	"net/http"
 	"time"
+
+	"github.com/turbot/steampipe-plugin-sdk/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/plugin/transform"	
+
 )
 
 type SearchResult struct {
@@ -55,10 +57,11 @@ func tableHypothesisSearch(ctx context.Context) *plugin.Table {
 //			{Name: "query", Type: proto.ColumnType_STRING},
 			{Name: "id", Type: proto.ColumnType_STRING},
 			{Name: "created", Type: proto.ColumnType_STRING},
-			{Name: "user", Type: proto.ColumnType_STRING},
+			{Name: "userid", Type: proto.ColumnType_STRING, Transform: transform.FromField("User")}, 
+			{Name: "groupid", Type: proto.ColumnType_STRING, Transform: transform.FromField("Group")},
+			{Name: "uri", Type: proto.ColumnType_STRING},
 			{Name: "text", Type: proto.ColumnType_STRING},
 			{Name: "tags", Type: proto.ColumnType_JSON},
-			{Name: "group", Type: proto.ColumnType_STRING},
 			{Name: "target", Type: proto.ColumnType_JSON},
 			{Name: "document", Type: proto.ColumnType_JSON},
 			{Name: "user_info", Type: proto.ColumnType_JSON},
