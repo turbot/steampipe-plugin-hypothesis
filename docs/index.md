@@ -1,44 +1,25 @@
----
-organization: Turbot
-category: ["software development"]
-icon_url: "/images/plugins/turbot/steampipe.svg"
-brand_color: "#a42a2d1a"
-display_name: hypothesis
-name: hypothesis
-description: Steampipe plugin to show how to write plugins
----
+# Hypothesis
 
-# hypothesis
-
-[hypothesis]() is a series of examples showing how to write Steampipe plugins
-
+The Hypothes plugin queries annotations stored on the [Hypothesis](https://hypothes.is) service.
 
 ## Installation
 
-Build and use locally.
-
-
-## Tables
-
-```
-> .inspect hypothesis
-+--------------------+-----------------------------------------------------------------------------+
-| TABLE              | DESCRIPTION                                                                 |
-+--------------------+-----------------------------------------------------------------------------+
-| hypothesis              | Simplest possible way to populate a query with data                         |
-+--------------------+-----------------------------------------------------------------------------+
+```bash
+$ git clone https://github.com/judell/hypothesis-go.git
+$ cd hypothesis-go
+$ make
+$ cp config/hypothesis.spc ~/.steampipe/config
 ```
 
-## Credentials
+## API token
 
-None.
+The token is optional. Without it, you can still query the Hypothesis public layer. 
 
-## Connection Configuration
+If you are a Hypothesis user wanting to query your own private notes, or notes in private groups you belong to, then log in, open https://hypothes.is/account/developer, generate a token, and copy it into ~/.steampipe/config/hypothesis.spc like so.
 
-Put this into ~/.steampipe/config/hypothesis.spc`.
-
-```
-connection "hypothesis" {
-  plugin    = "hypothesis"
-}
+  ```hcl
+  connection "hypothesis" {
+    plugin  = "hypothesis"
+    token   = "6879-35....3df5"
+  }
 ```
