@@ -9,11 +9,11 @@ import (
 
 func Plugin(ctx context.Context) *plugin.Plugin {
 	p := &plugin.Plugin{
-		Name:             "steampipe-plugin-hypothesis",
+		Name: "steampipe-plugin-hypothesis",
 		ConnectionConfigSchema: &plugin.ConnectionConfigSchema{
 			NewInstance: ConfigInstance,
 			Schema:      ConfigSchema,
-		},		
+		},
 		DefaultTransform: transform.FromJSONTag().NullIfZero(),
 		TableMap: map[string]*plugin.Table{
 			"hypothesis_search": tableHypothesisSearch(ctx),
@@ -21,4 +21,3 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 	}
 	return p
 }
-
