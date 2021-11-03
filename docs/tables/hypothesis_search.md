@@ -20,6 +20,8 @@ from
 where
   query = 'user=judell'
   and jsonb_array_length(tags) > 0
+order by
+  created desc
 limit 10;
 ```
 ### Find notes tagged with both `media` and `review`
@@ -131,22 +133,99 @@ order by
 ```sql
 ```  
 
-### Find notes on GitHub repos, join with GitHub API
+### Find notes on GitHub repos, join with info from GitHub API
 
 ```sql
-with urls as (
-  select 
-    uri
+with annotated_urls as (
+  select
+    id,
+    created,
+    uri,
+    "user",
+    regexp_matches(uri, 'github.com/([^/]+)/([^/]+)') as match    
   from 
     hypothesis_search
   where
-    query = 'wildcard_uri=http://github.com/*&limit=2000'
-  )
-select * from urls
-```  
+    query = 'wildcard_uri=http://github.com/*&limit=1000'
+  order by
+    uri
+  ),
+and_repos as (
+  select
+    a.*,
+    a.match[1] || '/' || a.match[2] as repository_full_name
+from 
+  annotated_urls a
+order by 
+  a.uri
+)
+select distinct
+  g.name,
+  g.description,
+  g.owner_login,
+  r.uri,
+  r.id,
+  r."user"
+from 
+  github_repository g
+join 
+  and_repos r
+on
+  g.full_name = r.repository_full_name
+```
 
+### Order GitHub repos by annotations
 
-
-
-
+```sql
+with annotated_urls as (
+  select
+    id,
+    created,
+    uri,
+    "user",
+    regexp_matches(uri, 'github.com/([^/]+)/([^/]+)') as match    
+  from 
+    hypothesis_search
+  where
+    query = 'wildcard_uri=http://github.com/*&limit=1000'
+  order by
+    uri
+  ),
+and_repos as (
+  select
+    a.*,
+    a.match[1] || '/' || a.match[2] as repository_full_name
+from 
+  annotated_urls a
+order by 
+  a.uri
+),
+joined as (
+  select distinct
+    g.name,
+    g.owner_login,
+    r.uri,
+    r.id,
+    r."user"
+  from 
+    github_repository g
+  join 
+    and_repos r
+  on
+    g.full_name = r.repository_full_name
+)
+select 
+  count(j.*),
+  j.name,
+  j.owner_login,
+  j.uri
+from
+  joined j
+group by
+  j.name,
+  j.owner_login,
+  j.uri
+order by
+  count desc
+```
 
