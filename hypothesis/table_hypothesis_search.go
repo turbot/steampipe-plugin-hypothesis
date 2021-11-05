@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+	"regexp"
 
 	hyp "github.com/judell/hypothesis-go"
 	"github.com/turbot/steampipe-plugin-sdk/grpc/proto"
@@ -22,16 +23,18 @@ func tableHypothesisSearch(ctx context.Context) *plugin.Table {
 		},
 		Columns: []*plugin.Column{
 			{Name: "query", Type: proto.ColumnType_STRING, Hydrate: queryString, Transform: transform.FromValue(), Description: "The search query."},
-			{Name: "id", Type: proto.ColumnType_STRING},
-			{Name: "created", Type: proto.ColumnType_STRING},
-			{Name: "updated", Type: proto.ColumnType_STRING},
-			{Name: "user", Type: proto.ColumnType_STRING},
-			{Name: "group", Type: proto.ColumnType_STRING},
-			{Name: "uri", Type: proto.ColumnType_STRING},
-			{Name: "text", Type: proto.ColumnType_STRING},
-			{Name: "tags", Type: proto.ColumnType_JSON},
-			{Name: "document", Type: proto.ColumnType_JSON},
-			{Name: "target", Type: proto.ColumnType_JSON},
+			{Name: "id", Type: proto.ColumnType_STRING, Description: "The annotation id, works with https://hypothes.is/a/{ID}"},
+			{Name: "created", Type: proto.ColumnType_STRING, Description: "The creation date of the annotation"},
+			{Name: "updated", Type: proto.ColumnType_STRING, Description: "The last update date of the annotation"},
+			{Name: "user", Type: proto.ColumnType_STRING, Transform: transform.FromField("User").Transform(userIdToUsername), Description: "The Hypothesis username of the person who created the annotation"},
+			{Name: "group", Type: proto.ColumnType_STRING, Description: "The annotation's group: __world__ or a private group id"},
+			{Name: "uri", Type: proto.ColumnType_STRING, Description: "URL of the annotated resource"},
+			{Name: "text", Type: proto.ColumnType_STRING, Description: "Textual body of the annotation, as MarkDown/HTML"},
+			{Name: "tags", Type: proto.ColumnType_JSON, Description: "Tags on the annotation, as a JSONB array of strings"},
+			{Name: "title", Type: proto.ColumnType_STRING, Transform: transform.FromField("Document").Transform(documentToTitle), Description: "The HTML doctitle of the annotated URL."},
+			{Name: "document", Type: proto.ColumnType_JSON, Description: "An element that contains the title and maybe other metadata"},
+			{Name: "target", Type: proto.ColumnType_JSON, Description: "The selectors that define the document selection to which the annotation anchors"},
+			{Name: "exact", Type: proto.ColumnType_STRING, Transform: transform.FromField("Target").Transform(targetToExact), Description: "The text of the selection (aka quote) to which the annotation anchors"},
 		},
 	}
 }
@@ -107,4 +110,48 @@ func mapContainsKey(m map[string][]string, key string) bool {
 		return true
 	}
 	return false
+}
+
+func documentToTitle(ctx context.Context, input *transform.TransformData) (interface{}, error) {
+	doc := input.Value.(struct {
+		Title []string "json:\"title\""
+	})
+	return doc.Title[0], nil
+}
+
+func userIdToUsername(ctx context.Context, input *transform.TransformData) (interface{}, error) {
+	userId := input.Value.(string)
+	re := regexp.MustCompile("acct:|@hypothes.is")
+	userName := re.ReplaceAllString(userId, "")
+	return userName, nil
+}
+
+
+type Target = []struct {
+	Source   string `json:"source"`
+	Selector []struct {
+		End    int    `json:"end,omitempty"`
+		Type   string `json:"type"`
+		Start  int    `json:"start,omitempty"`
+		Exact  string `json:"exact,omitempty"`
+		Prefix string `json:"prefix,omitempty"`
+		Suffix string `json:"suffix,omitempty"`
+	} `json:"selector"`
+}
+
+func targetToExact(ctx context.Context, input *transform.TransformData) (interface{}, error) {
+	empty := ""
+	target := input.Value.(Target)
+	if len(target) == 0 {
+		return empty, nil
+	}
+	if len(target[0].Selector) == 0 {
+		return empty, nil
+	}
+	for _, sel := range target[0].Selector {
+		if sel.Type == "TextQuoteSelector" {
+			return sel.Exact, nil
+		}
+	}
+	return empty, nil
 }
