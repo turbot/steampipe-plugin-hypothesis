@@ -1,14 +1,17 @@
 # Hypothesis
 
-The Hypothes plugin queries annotations stored on the [Hypothesis](https://hypothes.is) service.
+The Hypothesis plugin queries annotations stored on the [Hypothesis](https://hypothes.is) service.
 
 ## Installation
 
 ```bash
-$ git clone https://github.com/judell/hypothesis-go.git
+$ git clone https://github.com/judell/steampipe-plugin-hypothesis.git
+
 $ cd hypothesis-go
+
 $ make
-$ cp config/hypothesis.spc ~/.steampipe/config
+
+$ cp config/* ~/.steampipe/config
 ```
 
 ## API token

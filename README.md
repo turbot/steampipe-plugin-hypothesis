@@ -1,42 +1,69 @@
-<p align="center">
-  <h1 align="center">hypothesis Plugin for Steampipe</h1>
-</p>
+# Hypothesis Plugin for Steampipe
 
-<p align="center">
-  <a aria-label="Steampipe logo" href="https://steampipe.io">
-    <img src="https://steampipe.io/images/steampipe_logo_wordmark_padding.svg" height="28">
-  </a>
-  <a aria-label="License" href="LICENSE">
-    <img alt="" src="https://img.shields.io/static/v1?label=license&message=Apache-2.0&style=for-the-badge&labelColor=777777&color=F3F1F0">
-  </a>
-</p>
+## Prerequisites
 
-## Examples for creators of Steampipe plugins
+* [Steampipe](https://steampipe.io/downloads)
 
-Learn about [Steampipe](https://steampipe.io/)
+* [Golang](https://golang.org/doc/install)
 
-## Get started
+## Build 
 
-Install go, then:
+```sh
+$ git clone https://github.com/judell/steampipe-plugin-hypothesis.git
 
+$ cd steampipe-plugin-hypothesis
+
+$ make # builds, then puts the plugin into your `~/.steampipe/plugins` directory
+
+$ cp config/* ~/.steampipe/config # tells steampipe to load the plugin
 ```
-$ git clone https://github.com/judell/steampipe-plugin-hypothesis
 
-$ cp ./config/hypothesis.scp ~/.steampipe/config
+## Try it!
 
-$ make
-
+```shell
 $ steampipe query
 
-> select * from hypothesis order by id
-+----+----------+-------------------+
-| id | greeting | json              |
-+----+----------+-------------------+
-| 1  | hypothesis    | {"hypothesis":"world"} |
-| 2  | hypothesis    | {"hypothesis":"world"} |
-| 3  | hypothesis    | {"hypothesis":"world"} |
-+----+----------+-------------------+
+> select 
+    "user",
+    tags
+  from 
+    hypothesis_search 
+  where 
+    query = 'uri=https://www.example.com'
+  and jsonb_array_length(tags) > 0
+  and "user" !~ 'judell'
 
+           user            |                             tags                             
+---------------------------+--------------------------------------------------------------
+ acct:robins80@hypothes.is | ["rikersierra1"]
+ acct:robins80@hypothes.is | ["HypothesisTest", "3219099"]
+ acct:robins80@hypothes.is | ["HypothesisTest", "3219099"]
+ acct:ryany25@hypothes.is  | ["asdf;", "asdfaasdf"]
+ acct:ryany25@hypothes.is  | ["T-cell acute lymphoblastic leukemia-associated antigen 1"]
 ```
 
+## API token
+
+The token is optional. Without it, you can still query the Hypothesis public layer. 
+
+If you are a Hypothesis user wanting to query your own private notes, or notes in private groups you belong to, then log in, open https://hypothes.is/account/developer, generate a token, and copy it into ``~/.steampipe/config/hypothesis.spc like so.
+
+```hcl
+connection "hypothesis" {
+  plugin  = "hypothesis"
+  token   = "6879-35....3df5"
+}
+```
+
+## More examples
+
+The plugin supports one table, `hypothesis_search`. For more example searches, see that table's [documentation page](https://github.com/judell/steampipe-plugin-hypothesis/blob/main/docs/tables/hypothesis_search.md).
+
+## Links
+
+Steampipe: [steampipe.io](https://steampipe.io)
+
+Blog: [steampipe.io/blog](https://steampipe.io/blog)
+
+Community: [steampipe.io/community/join](https://steampipe.io/community/join)
 
