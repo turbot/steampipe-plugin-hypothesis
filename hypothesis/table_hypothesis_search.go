@@ -69,10 +69,8 @@ func listSearchResults(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 	}
 	if mapContainsKey(m, "uri") {
 		searchParams.Uri = m["uri"][0]
-	} else {
-		if mapContainsKey(m, "wildcard_uri") {
-			searchParams.WildcardUri = m["wildcard_uri"][0]
-		}
+	} else if mapContainsKey(m, "wildcard_uri") {
+		searchParams.WildcardUri = m["wildcard_uri"][0]
 	}
 	if mapContainsKey(m, "tag") {
 		searchParams.Tags = append(searchParams.Tags, m["tag"]...)
