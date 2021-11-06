@@ -32,14 +32,15 @@ $ steampipe query
     query = 'uri=https://www.example.com'
   and jsonb_array_length(tags) > 0
   and "user" !~ 'judell'
+]
 
-           user            |                             tags                             
----------------------------+--------------------------------------------------------------
- acct:robins80@hypothes.is | ["rikersierra1"]
- acct:robins80@hypothes.is | ["HypothesisTest", "3219099"]
- acct:robins80@hypothes.is | ["HypothesisTest", "3219099"]
- acct:ryany25@hypothes.is  | ["asdf;", "asdfaasdf"]
- acct:ryany25@hypothes.is  | ["T-cell acute lymphoblastic leukemia-associated antigen 1"]
+   user   |                             tags
+----------+--------------------------------------------------------------
+ robins80 | ["rikersierra1"]
+ robins80 | ["HypothesisTest", "3219099"]
+ robins80 | ["HypothesisTest", "3219099"]
+ ryany25  | ["asdf;", "asdfaasdf"]
+ ryany25  | ["T-cell acute lymphoblastic leukemia-associated antigen 1"]
 ```
 
 ## API token
