@@ -78,6 +78,10 @@ func listSearchResults(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 	if mapContainsKey(m, "tag") {
 		searchParams.Tags = append(searchParams.Tags, m["tag"]...)
 	}
+	if mapContainsKey(m, "limit") {
+		searchParams.Limit = m["limit"][0]
+	}
+
 
 	plugin.Logger(ctx).Warn("hypothesis.listSearchResults", "searchParams", fmt.Sprintf("%+v", searchParams))
 
