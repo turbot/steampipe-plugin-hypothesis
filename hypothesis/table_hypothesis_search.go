@@ -116,6 +116,9 @@ func documentToTitle(ctx context.Context, input *transform.TransformData) (inter
 	doc := input.Value.(struct {
 		Title []string "json:\"title\""
 	})
+	if len(doc.Title) == 0 {
+		return "untitled",  nil
+	}
 	return doc.Title[0], nil
 }
 
