@@ -24,7 +24,7 @@ from
   hypothesis_profile
 ```
 
-### Among the most recent 1000 annotions, find those in your private groups
+### Among the most recent 500 annotions, find those in your private groups (method 1)
 
 ```
 with groups as (
@@ -39,7 +39,7 @@ annos as (
   from
     hypothesis_search
   where 
-    query = 'limit=1000'
+    query = 'limit=500'
   order by
     created desc
 )
@@ -60,6 +60,53 @@ on
 where
   g.group_info ->> 'public' != 'true'
 ```    
+
+### Among the most recent 500 annotions, find those in your private groups (method 2)
+
+**NOTE** It can be helpful to turn chunks of SQL code into Postgres functions. Here we define, and then use, `is_private_group`, a function that checks if a `groupid` is private. This function makes method 2 simpler than method 1. And you can use the function anywhere a `groupid` appears. See [Postgres functional style](https://blog.jonudell.net/2021/08/21/postgres-functional-style/) for details.
+
+#### Create the function `is_private_group`
+
+```
+create function is_private_group (groupid text) returns boolean as $$
+  declare is_private boolean;
+  begin
+    with groups as (
+    select
+        jsonb_array_elements(groups) as group_info
+    from
+        hypothesis_profile
+    )
+    select
+      g.group_info ->> 'public' != 'true'
+    from
+      groups g
+    where 
+      g.group_info ->> 'id' = groupid
+    into
+      is_private;
+    return is_private;
+  end;
+$$ language plpgsql;
+```
+
+#### Use `is_private_group` 
+
+```
+select
+  'https://hypothes.is/a/' || id as link,
+  "group",
+  "user",
+  created,
+  title,
+  uri
+from 
+  hypothesis_search
+where 
+  query = 'limit=1000'
+  and is_private_group("group")
+```    
+
 
 
 
