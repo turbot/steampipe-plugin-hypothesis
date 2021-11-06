@@ -17,6 +17,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 		DefaultTransform: transform.FromJSONTag().NullIfZero(),
 		TableMap: map[string]*plugin.Table{
 			"hypothesis_search": tableHypothesisSearch(ctx),
+			"hypothesis_profile": tableHypothesisProfile(ctx),
 		},
 	}
 	return p
