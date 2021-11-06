@@ -26,6 +26,7 @@ from
 
 ### Among the most recent 1000 annotions, find those in your private groups
 
+```
 with groups as (
   select
     jsonb_array_elements(groups) as group_info
@@ -58,7 +59,7 @@ on
   g.group_info ->> 'id' = a."group"
 where
   g.group_info ->> 'public' != 'true'
-    
+```    
 
 
 
