@@ -1,5 +1,5 @@
 connection "hypothesis" {
   plugin = "hypothesis"
 
-  #token = "6879-358c"
+  #token   = "6879-35....3df5"  
 }
