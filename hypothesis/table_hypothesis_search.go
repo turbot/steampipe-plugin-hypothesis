@@ -34,7 +34,7 @@ func tableHypothesisSearch(ctx context.Context) *plugin.Table {
 			{Name: "title", Type: proto.ColumnType_STRING, Transform: transform.FromField("Document").Transform(documentToTitle), Description: "The HTML doctitle of the annotated URL."},
 			{Name: "document", Type: proto.ColumnType_JSON, Description: "An element that contains the title and maybe other metadata"},
 			{Name: "target", Type: proto.ColumnType_JSON, Description: "The selectors that define the document selection to which the annotation anchors"},
-			{Name: "exact", Type: proto.ColumnType_STRING, Transform: transform.FromField("Target").Transform(targetToExact), Description: "The text of the selection (aka quote) to which the annotation anchors"},
+			{Name: "exact", Type: proto.ColumnType_STRING, Transform: transform.FromField("Target").Transform(selectorsToExact), Description: "The text of the selection (aka quote) to which the annotation anchors"},
 		},
 	}
 }
@@ -126,32 +126,12 @@ func userIdToUsername(ctx context.Context, input *transform.TransformData) (inte
 	return userName, nil
 }
 
-
-type Target = []struct {
-	Source   string `json:"source"`
-	Selector []struct {
-		End    int    `json:"end,omitempty"`
-		Type   string `json:"type"`
-		Start  int    `json:"start,omitempty"`
-		Exact  string `json:"exact,omitempty"`
-		Prefix string `json:"prefix,omitempty"`
-		Suffix string `json:"suffix,omitempty"`
-	} `json:"selector"`
-}
-
-func targetToExact(ctx context.Context, input *transform.TransformData) (interface{}, error) {
-	empty := ""
-	target := input.Value.(Target)
-	if len(target) == 0 {
-		return empty, nil
+func selectorsToExact(ctx context.Context, input *transform.TransformData) (interface{}, error) {
+	targets := input.Value.([]hyp.Target)
+	selectors := targets[0].Selector
+	exact, err := hyp.SelectorsToExact(selectors)
+	if err != nil {
+		return "", nil
 	}
-	if len(target[0].Selector) == 0 {
-		return empty, nil
-	}
-	for _, sel := range target[0].Selector {
-		if sel.Type == "TextQuoteSelector" {
-			return sel.Exact, nil
-		}
-	}
-	return empty, nil
+	return exact, nil
 }
