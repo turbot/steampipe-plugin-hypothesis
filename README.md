@@ -56,7 +56,7 @@ connection "hypothesis" {
 }
 ```
 
-## More examples
+## Tables and examples
 
 [hypothesis_search](https://github.com/judell/steampipe-plugin-hypothesis/blob/main/docs/tables/hypothesis_search.md)
 
