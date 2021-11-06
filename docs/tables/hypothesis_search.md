@@ -141,6 +141,7 @@ from
   hypothesis_search
 where
   query = 'wildcard_uri=https://www.nytimes.com/*/opinion/*'
+  and exact ~* 'covid'
 order by
   created desc
 ```  
