@@ -103,7 +103,7 @@ select
 from 
   hypothesis_search
 where 
-  query = 'limit=1000'
+  query = 'limit=500'
   and is_private_group("group")
 ```    
 
