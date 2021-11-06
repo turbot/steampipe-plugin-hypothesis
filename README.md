@@ -58,7 +58,9 @@ connection "hypothesis" {
 
 ## More examples
 
-The plugin supports one table, `hypothesis_search`. For more example searches, see that table's [documentation page](https://github.com/judell/steampipe-plugin-hypothesis/blob/main/docs/tables/hypothesis_search.md).
+[hypothesis_search](https://github.com/judell/steampipe-plugin-hypothesis/blob/main/docs/tables/hypothesis_search.md)
+
+[hypothesis_profile](https://github.com/judell/steampipe-plugin-hypothesis/blob/main/docs/tables/hypothesis_profile.md)
 
 ## Links
 
