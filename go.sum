@@ -104,14 +104,8 @@ github.com/iancoleman/strcase v0.2.0 h1:05I4QRnGpI0m37iZQRuskXh+w77mr6Z41lwQzuHL
 github.com/iancoleman/strcase v0.2.0/go.mod h1:iwCmte+B7n89clKwxIoIXy/HfoL7AsD47ZCWhYzw7ho=
 github.com/jhump/protoreflect v1.6.0 h1:h5jfMVslIg6l29nsMs0D8Wj17RDVdNYti0vDN/PZZoE=
 github.com/jhump/protoreflect v1.6.0/go.mod h1:eaTn3RZAmMBcV0fifFvlm6VHNz3wSkYyXYWUh7ymB74=
-github.com/judell/hypothesis-go v0.0.0-20211031042244-bd7820f6a503 h1:aL9jNF2MRkSYpPax8N0bngJ6nziFbfZQBrJgiVYNd/Y=
-github.com/judell/hypothesis-go v0.0.0-20211031042244-bd7820f6a503/go.mod h1:FYDCpRp//oqVO/+dzvGFOeaMtaFwL17HKjZn4aFchs8=
-github.com/judell/hypothesis-go v0.1.12 h1:hUGKoz+LM7bYYvqeSZ+EJXWpflXLk/Bz7WxV4/6w45U=
-github.com/judell/hypothesis-go v0.1.12/go.mod h1:FYDCpRp//oqVO/+dzvGFOeaMtaFwL17HKjZn4aFchs8=
-github.com/judell/hypothesis-go v0.1.13 h1:iS1eMJmlxHMKawrmAMyBSNFSKCh6LYMNT+suWYAZxHY=
-github.com/judell/hypothesis-go v0.1.13/go.mod h1:FYDCpRp//oqVO/+dzvGFOeaMtaFwL17HKjZn4aFchs8=
-github.com/judell/hypothesis-go v0.1.14 h1:ePEDGel/1MemA0XTeF43xAFXnEiAlX4rbN8pJwNnC0M=
-github.com/judell/hypothesis-go v0.1.14/go.mod h1:FYDCpRp//oqVO/+dzvGFOeaMtaFwL17HKjZn4aFchs8=
+github.com/judell/hypothesis-go v0.1.17 h1:yrGSnM3e0EokDRXP26KIcXsOi3B8t5iKPL49+0B4vm8=
+github.com/judell/hypothesis-go v0.1.17/go.mod h1:FYDCpRp//oqVO/+dzvGFOeaMtaFwL17HKjZn4aFchs8=
 github.com/kr/pretty v0.1.0 h1:L/CwN0zerZDmRFUapSPitk6f+Q3+0za1rQkzVuMiMFI=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
