@@ -24,7 +24,7 @@ from
   hypothesis_profile
 ```
 
-### Among the most recent 500 annotions, find those in your private groups (method 1)
+### Among the most recent 500 notes, find those in your private groups (method 1)
 
 ```
 with groups as (
@@ -61,7 +61,7 @@ where
   g.group_info ->> 'public' != 'true'
 ```    
 
-### Among the most recent 500 annotions, find those in your private groups (method 2)
+### Among the most recent 500 notes, find those in your private groups (method 2)
 
 **NOTE** It can be helpful to turn chunks of SQL code into Postgres functions. Here we define, and then use, `is_private_group`, a function that checks if a `groupid` is private. This function makes method 2 simpler than method 1. And you can use the function anywhere a `groupid` appears. See [Postgres functional style](https://blog.jonudell.net/2021/08/21/postgres-functional-style/) for details.
 
