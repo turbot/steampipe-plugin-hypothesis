@@ -130,53 +130,17 @@ order by
 
 ### Find notes, in the Times' Opinion section, that quote selections matching "covid"
 
-**NOTE** You do not want to write this kind of SQL more than once. Unpacking Postgres JSONB is tricky. Instead, package JSONB idioms in functions like [quote_from_anno](https://jonudell.info/h/analytics/doc/functions.html#quote_from_anno). See [Postgres functional style](https://blog.jonudell.net/2021/08/21/postgres-functional-style/) for details.
-
 ```sql
-with expanded_target_keys as (
-  select
-    jsonb_object_keys(target->0) as target_key,
-    *
-  from
-    hypothesis_search
-  where
-    query = 'wildcard_uri=https://www.nytimes.com/*/opinion/*'
-),
-to_selectors as (
-  select 
-    target->0->'selector' as selectors,
-    *
-from 
-  expanded_target_keys
-where  
-  target_key = 'selector'
-  and target->0->>'selector' is not null
-),
-to_selector_objects as (
-  select
-    jsonb_array_elements(target->0->'selector') as selector_object,
-    *
-from 
-  to_selectors
-),
-to_text_quote_selectors as (
-  select
-    *
-  from
-    to_selector_objects
-  where
-    selector_object->>'type' = 'TextQuoteSelector'
-)
 select
   'https://hypothes.is/a/' || id as link,
   uri,
   "user",
   created,
-  selector_object->>'exact' as quote
-from 
-  to_text_quote_selectors
+  exact
+from
+  hypothesis_search
 where
-  selector_object->>'exact' ~* 'covid'
+  query = 'wildcard_uri=https://www.nytimes.com/*/opinion/*'
 order by
   created desc
 ```  
