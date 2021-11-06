@@ -106,6 +106,8 @@ github.com/jhump/protoreflect v1.6.0 h1:h5jfMVslIg6l29nsMs0D8Wj17RDVdNYti0vDN/PZ
 github.com/jhump/protoreflect v1.6.0/go.mod h1:eaTn3RZAmMBcV0fifFvlm6VHNz3wSkYyXYWUh7ymB74=
 github.com/judell/hypothesis-go v0.1.17 h1:yrGSnM3e0EokDRXP26KIcXsOi3B8t5iKPL49+0B4vm8=
 github.com/judell/hypothesis-go v0.1.17/go.mod h1:FYDCpRp//oqVO/+dzvGFOeaMtaFwL17HKjZn4aFchs8=
+github.com/judell/hypothesis-go v0.1.18 h1:Kar8mQaP36FPRNJDhvX4IW4hEGRgS2TpZsGHgA+NMVA=
+github.com/judell/hypothesis-go v0.1.18/go.mod h1:FdrWsJLqnw/lVSiUpDwoIBrGKjGfCFtqyFwniLuvQ5o=
 github.com/kr/pretty v0.1.0 h1:L/CwN0zerZDmRFUapSPitk6f+Q3+0za1rQkzVuMiMFI=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
