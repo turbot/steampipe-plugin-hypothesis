@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/url"
 	"os"
-	"regexp"
 
 	hyp "github.com/judell/hypothesis-go"
 	"github.com/turbot/steampipe-plugin-sdk/grpc/proto"
@@ -124,13 +123,6 @@ func documentToTitle(ctx context.Context, input *transform.TransformData) (inter
 		return "untitled",  nil
 	}
 	return doc.Title[0], nil
-}
-
-func userIdToUsername(ctx context.Context, input *transform.TransformData) (interface{}, error) {
-	userId := input.Value.(string)
-	re := regexp.MustCompile("acct:|@hypothes.is")
-	userName := re.ReplaceAllString(userId, "")
-	return userName, nil
 }
 
 func selectorsToExact(ctx context.Context, input *transform.TransformData) (interface{}, error) {
