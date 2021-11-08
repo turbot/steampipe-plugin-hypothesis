@@ -241,3 +241,72 @@ order by
   count desc
 ```
 
+### Cache the most recent 10000 annotations, list the most recent 10
+
+```
+select
+  *
+from
+  hypothesis_search
+where
+  query = 'limit=10000'
+limit
+  10
+```
+
+**NOTE** When you use `limit` in the query string, it means: If there are `limit` annotations that match your query, fetch all of them. They will be stored in the Steampipe cache for 5 minutes by default, or longer if you add an `options` argument to your `hypothesis.spc` file and adjust the `cache_ttl` to a longer duration. 
+
+```
+options "connection" {
+  cache = "true"
+  cache_ttl = 300 # default 5 minutes
+}
+```
+
+The SQL `limit` then governs the number of rows that come back from your query. Once the 10,000 rows are cached, subsequent queries that touch the same data happen instantly, and you can use the SQL `limit` to restrict the number of rows returned by those subsequent queries. It's also possible to permanently cache results. 
+
+#### Merging historical and live data
+
+Suppose you have 500,000 annotations and are continuing to accumulate them at the rate of several thousand per day. (This is a real scenario.) You could stash the 500,000 in a table, or in a materialized view, like so:
+
+```
+create materialized view my_hypothesis_annotations as (
+  select
+    *
+  from
+    hypothesis_search
+  where
+    query = 'limit=10000'
+) with data;
+```
+
+You could then merge those with live data like so. 
+
+```
+with historical as (
+  select
+    *
+  from
+    my_hypothesis_annotations 
+),
+new as (
+  select
+    *
+  from 
+    hypothesis_search new
+  where
+    query = 'limit=500000'
+    and not exists (
+      select 
+        *
+      from 
+        historical
+      where 
+        historical.id = new.id
+    )
+),
+select * from historical
+union
+select * from new
+```
+

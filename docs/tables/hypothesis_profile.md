@@ -65,10 +65,12 @@ where
 
 **NOTE** It can be helpful to turn chunks of SQL code into Postgres functions. Here we define, and then use, `is_private_group`, a function that checks if a `groupid` is private. This function makes method 2 simpler than method 1. And you can use the function anywhere a `groupid` appears. See [Postgres functional style](https://blog.jonudell.net/2021/08/21/postgres-functional-style/) for details.
 
-#### Create the function `is_private_group`
+#### Create the function `hypothesis_is_private_group`
+
+**NOTE** Steampipe plugins put their tables into Postgres schemas (namespaces) that match the names of the plugins. So tables in this plugin are actually `hypothesis.hypothesis_search` and `hypothesis.hypothesis_profile`. The examples here don't qualify table names with schemas because if there is no confict with another schema it's unnecessary. When you create functions, though, they live in Postgres' global namespace. Nothing requires you to prepend a schema-like prefix to function names, but it's probably a good idea to do that in order to clarify which plugins they're intended to work with.
 
 ```
-create function is_private_group (groupid text) returns boolean as $$
+create function hypothesis_is_private_group (groupid text) returns boolean as $$
   declare is_private boolean;
   begin
     with groups as (
@@ -90,7 +92,7 @@ create function is_private_group (groupid text) returns boolean as $$
 $$ language plpgsql;
 ```
 
-#### Use `is_private_group` 
+#### Use `hypothesis_is_private_group` 
 
 ```
 select
@@ -104,7 +106,7 @@ from
   hypothesis_search
 where 
   query = 'limit=500'
-  and is_private_group("group")
+  and hypothesis_is_private_group("group")
 ```    
 
 
