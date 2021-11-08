@@ -276,7 +276,7 @@ create materialized view my_hypothesis_annotations as (
   from
     hypothesis_search
   where
-    query = 'limit=10000'
+    query = 'group=my_group&limit=500000'
 ) with data;
 ```
 
@@ -295,7 +295,7 @@ new as (
   from 
     hypothesis_search new
   where
-    query = 'limit=500000'
+    query = 'group=my_group&limit=5000'
     and not exists (
       select 
         *
