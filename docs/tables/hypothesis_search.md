@@ -112,9 +112,11 @@ with target_keys_to_rows as (
   from
     hypothesis_search
   where
-    query = 'uri=https://www.example.com/'
+    query = 'uri=https://www.example.com'
   group by
     id, "user", created, text, uri, target
+  order by
+    id
 )
 select
   'https://hypothes.is/a/' || id as link,
@@ -122,8 +124,8 @@ select
 from 
   target_keys_to_rows
 where 
-  target_key = 'selector'
-  and target->0->>'selector' is null
+  target_key = 'Selector'
+  and target->0->>'Selector' is null
 order by
   created desc
 ```
