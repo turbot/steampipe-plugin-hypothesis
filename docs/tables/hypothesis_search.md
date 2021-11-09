@@ -112,7 +112,7 @@ with target_keys_to_rows as (
   from
     hypothesis_search
   where
-    query = 'uri=https://www.example.com'
+    query = 'uri=https://www.example.com/'
   group by
     id, "user", created, text, uri, target
 )
