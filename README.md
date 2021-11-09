@@ -32,7 +32,6 @@ $ steampipe query
     query = 'uri=https://www.example.com'
   and jsonb_array_length(tags) > 0
   and "user" !~ 'judell'
-]
 
    user   |                             tags
 ----------+--------------------------------------------------------------
