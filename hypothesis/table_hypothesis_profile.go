@@ -18,9 +18,9 @@ func tableHypothesisProfile(ctx context.Context) *plugin.Table {
 			Hydrate: listProfile,
 		},
 		Columns: []*plugin.Column{
-			{Name: "user", Type: proto.ColumnType_STRING, Transform: transform.FromField("Userid").Transform(userIdToUsername), Description: "The user whose profile to get."},
-			{Name: "display_name", Type: proto.ColumnType_STRING, Transform: transform.FromField("UserInfo").Transform(userInfoToDisplayName), Description: "The user's display name (if any)."},
-			{Name: "authority", Type: proto.ColumnType_STRING, Description: "Authority of the user's account."},
+			{Name: "user", Type: proto.ColumnType_STRING, Transform: transform.FromField("Userid").Transform(userIdToUsername), Description: "The user whose profile to get"},
+			{Name: "display_name", Type: proto.ColumnType_STRING, Transform: transform.FromField("UserInfo").Transform(userInfoToDisplayName), Description: "The user's display name (if any)"},
+			{Name: "authority", Type: proto.ColumnType_STRING, Description: "Authority of the user's account"},
 			{Name: "groups", Type: proto.ColumnType_JSON, Description: "The user's groups"},
 		},
 	}
