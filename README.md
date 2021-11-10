@@ -25,7 +25,7 @@ $ steampipe query
 ```
 
 ```sql
-> select 
+  select 
     "user",
     tags
   from 
