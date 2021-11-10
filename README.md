@@ -22,7 +22,9 @@ $ cp config/* ~/.steampipe/config # tells steampipe to load the plugin
 
 ```shell
 $ steampipe query
+```
 
+```sql
 > select 
     "user",
     tags
