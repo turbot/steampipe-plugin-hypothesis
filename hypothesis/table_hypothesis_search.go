@@ -92,11 +92,7 @@ func listSearchResults(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 
 	plugin.Logger(ctx).Warn("hypothesis.listSearchResults", "client", fmt.Sprintf("%+v", client))
 
-	rows, err := client.SearchAll()
-	if err != nil {
-		panic(err)
-	}
-	for _, row := range rows {
+	for row := range client.SearchAll() {
 		d.StreamListItem(ctx, row)
 	}
 	return nil, nil
