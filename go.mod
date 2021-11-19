@@ -1,4 +1,4 @@
-module github.com/judell/steampipe-plugin-hypothesis
+module github.com/turbot/steampipe-plugin-hypothesis
 
 go 1.16
 

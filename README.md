@@ -9,7 +9,7 @@
 ## Build 
 
 ```sh
-$ git clone https://github.com/judell/steampipe-plugin-hypothesis.git
+$ git clone https://github.com/turbot/steampipe-plugin-hypothesis.git
 
 $ cd steampipe-plugin-hypothesis
 
