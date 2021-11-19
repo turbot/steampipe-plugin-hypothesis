@@ -61,9 +61,9 @@ connection "hypothesis" {
 
 ## Tables and examples
 
-[hypothesis_search](https://github.com/judell/steampipe-plugin-hypothesis/blob/main/docs/tables/hypothesis_search.md)
+[hypothesis_search](https://github.com/turbot/steampipe-plugin-hypothesis/blob/main/docs/tables/hypothesis_search.md)
 
-[hypothesis_profile](https://github.com/judell/steampipe-plugin-hypothesis/blob/main/docs/tables/hypothesis_profile.md)
+[hypothesis_profile](https://github.com/turbot/steampipe-plugin-hypothesis/blob/main/docs/tables/hypothesis_profile.md)
 
 ## Links
 
