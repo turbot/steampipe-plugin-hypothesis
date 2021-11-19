@@ -5,7 +5,7 @@ The Hypothesis plugin queries annotations stored on the [Hypothesis](https://hyp
 ## Installation
 
 ```bash
-$ git clone https://github.com/judell/steampipe-plugin-hypothesis.git
+$ git clone https://github.com/turbot/steampipe-plugin-hypothesis.git
 
 $ cd hypothesis-go
 

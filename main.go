@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/judell/steampipe-plugin-hypothesis/hypothesis"
+	"github.com/turbot/steampipe-plugin-hypothesis/hypothesis"
 	"github.com/turbot/steampipe-plugin-sdk/plugin"
 )
 
