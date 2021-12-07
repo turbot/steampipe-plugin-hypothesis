@@ -172,6 +172,8 @@ github.com/turbot/go-kit v0.3.0 h1:o4zZIO1ovdmJ2bHWOdXnnt8jJMIDGqYSkZvBREzFeMQ=
 github.com/turbot/go-kit v0.3.0/go.mod h1:SBdPRngbEfYubiR81iAVtO43oPkg1+ASr+XxvgbH7/k=
 github.com/turbot/steampipe-plugin-sdk v1.7.0 h1:84OFfUoxgMXHb51tPMtkabnIuADw3hAA07Ye4+dTAFY=
 github.com/turbot/steampipe-plugin-sdk v1.7.0/go.mod h1:y7q8abyaXXQNzwE9l4Tn/gkEnvmcyPpyedpHF04wggs=
+github.com/turbot/steampipe-plugin-sdk v1.8.2 h1:ng/UNCI1mS8/iYwj42MdHU/hGkU2XBH0HR0W3IB3nw4=
+github.com/turbot/steampipe-plugin-sdk v1.8.2/go.mod h1:76H3wr6KB6t+kDS38EEOZAsw61Ie/q7/IV9X0kv5NjI=
 github.com/vmihailenco/msgpack v3.3.3+incompatible/go.mod h1:fy3FlTQTDXWkZ7Bh6AcGMlsjHatGryHQYUTf1ShIgkk=
 github.com/vmihailenco/msgpack/v4 v4.3.12/go.mod h1:gborTTJjAo/GWTqqRjrLCn9pgNN+NXzzngzBKDPIqw4=
 github.com/vmihailenco/tagparser v0.1.1/go.mod h1:OeAg3pn3UbLjkWt+rN9oFYB6u/cQgqMEUPoW2WPyhdI=
@@ -227,6 +229,8 @@ golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c/go.mod h1:oPkhp1MJrh7nUepCBc
 golang.org/x/sys v0.0.0-20210927094055-39ccf1dd6fa6/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/sys v0.0.0-20211030160813-b3129d9d1021 h1:giLT+HuUP/gXYrG2Plg9WTjj4qhfgaW424ZIFog3rlk=
 golang.org/x/sys v0.0.0-20211030160813-b3129d9d1021/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/sys v0.0.0-20211102061401-a2f17f7b995c h1:QOfDMdrf/UwlVR0UBq2Mpr58UzNtvgJRXA4BgPfFACs=
+golang.org/x/sys v0.0.0-20211102061401-a2f17f7b995c/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/term v0.0.0-20201126162022-7de9c90e9dd1/go.mod h1:bj7SfCRtBDWHUb9snDiAeCFNEtKQo2Wmx5Cou7ajbmo=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2/go.mod h1:bEr9sfX3Q8Zfm5fL9x+3itogRgK3+ptLWKqgva+5dAk=

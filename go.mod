@@ -2,7 +2,7 @@ module github.com/turbot/steampipe-plugin-hypothesis
 
 go 1.16
 
-require github.com/turbot/steampipe-plugin-sdk v1.7.0
+require github.com/turbot/steampipe-plugin-sdk v1.8.2
 
 require (
 	github.com/agext/levenshtein v1.2.3 // indirect
@@ -27,7 +27,6 @@ require (
 	github.com/tkrajina/go-reflector v0.5.5 // indirect
 	github.com/zclconf/go-cty v1.9.1 // indirect
 	golang.org/x/net v0.0.0-20211029224645-99673261e6eb // indirect
-	golang.org/x/sys v0.0.0-20211030160813-b3129d9d1021 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/genproto v0.0.0-20211029142109-e255c875f7c7 // indirect
 	google.golang.org/grpc v1.41.0 // indirect
