@@ -101,6 +101,10 @@ func listSearchResults(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 
 		d.StreamListItem(ctx, row)
 
+		if d.QueryStatus.RowsRemaining(ctx) == 0 {
+			break
+		}
+
 	}
 	return nil, nil
 }
