@@ -1,7 +1,6 @@
 package hypothesis
 
 import (
-	"fmt"
 	"github.com/turbot/steampipe-plugin-sdk/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/plugin/schema"
 )
@@ -23,10 +22,8 @@ func ConfigInstance() interface{} {
 // GetConfig :: retrieve and cast connection config from query data
 func GetConfig(connection *plugin.Connection) hypothesisConfig {
 	if connection == nil || connection.Config == nil {
-		fmt.Printf("%v+\n", connection)
 		return hypothesisConfig{}
 	}
 	config, _ := connection.Config.(hypothesisConfig)
-	fmt.Printf("%v+\n", config)
 	return config
 }

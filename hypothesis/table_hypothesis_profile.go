@@ -50,5 +50,6 @@ func listProfile(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData
 	}
 
 	d.StreamListItem(ctx, profile)
+	
 	return nil, nil
 }

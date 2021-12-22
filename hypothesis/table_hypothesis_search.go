@@ -42,7 +42,7 @@ func listSearchResults(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 	quals := d.KeyColumnQuals
 	qs := quals["query"].GetStringValue()
 
-	plugin.Logger(ctx).Warn("hypothesis.listSearchResults", "qs", qs)
+	plugin.Logger(ctx).Info("hypothesis.listSearchResults", "qs", qs)
 
 	hypothesisConfig := GetConfig(d.Connection)
 
@@ -57,7 +57,7 @@ func listSearchResults(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 	}
 
 	m, _ := url.ParseQuery(u.RawQuery)
-	plugin.Logger(ctx).Warn("hypothesis.listSearchResults", "m", fmt.Sprintf("%+v", m))
+	plugin.Logger(ctx).Info("hypothesis.listSearchResults", "m", fmt.Sprintf("%+v", m))
 
 	searchParams := hyp.SearchParams{}
 	if mapContainsKey(m, "any") {
@@ -82,7 +82,7 @@ func listSearchResults(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 	}
 
 
-	plugin.Logger(ctx).Warn("hypothesis.listSearchResults", "searchParams", fmt.Sprintf("%+v", searchParams))
+	plugin.Logger(ctx).Info("hypothesis.listSearchResults", "searchParams", fmt.Sprintf("%+v", searchParams))
 
 	client := hyp.NewClient(
 		token,
@@ -90,15 +90,17 @@ func listSearchResults(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 		0, // use library default
 	)
 
-	plugin.Logger(ctx).Warn("hypothesis.listSearchResults", "client", fmt.Sprintf("%+v", client))
+	plugin.Logger(ctx).Info("hypothesis.listSearchResults", "client", fmt.Sprintf("%+v", client))
 
 	i := 0
 	for row := range client.SearchAll() {
 		i += 1
 		if i % 500 == 0 {
-			plugin.Logger(ctx).Warn("hypothesis.listSearchResults", "row", fmt.Sprintf(`%d`, i))
+			plugin.Logger(ctx).Info("hypothesis.listSearchResults", "row", fmt.Sprintf(`%d`, i))
 		}
+
 		d.StreamListItem(ctx, row)
+
 	}
 	return nil, nil
 }
