@@ -1,7 +1,6 @@
 # Table: hypothesis_search
 
 Searches for Hypothesis annotations matching a query. If you [authenticate](../index.md) you'll search the Hypothesis public layer plus all your private annotations, and annotations in private groups you belong to. If you don't authenticate you'll just search the public layer.
-
 ## Examples
 
 ### Find 10 recent notes, by `judell`, that have tags
