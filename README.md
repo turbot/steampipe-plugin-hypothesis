@@ -1,75 +1,81 @@
+![image](https://hub.steampipe.io/images/plugins/turbot/hypothesis-social-graphic.png)
 # Hypothesis Plugin for Steampipe
 
-## Prerequisites
+Use SQL to query Hypothesis annotations.
 
-* [Steampipe](https://steampipe.io/downloads)
+- **[Get started →](https://hub.steampipe.io/plugins/turbot/hypothesis)**
+- Documentation: [Table definitions & examples](https://hub.steampipe.io/plugins/turbot/hypothesis/tables)
+- Community: [Slack Channel](https://steampipe.io/community/join)
+- Get involved: [Issues](https://github.com/turbot/steampipe-plugin-hypothesis)
+## Quick start
 
-* [Golang](https://golang.org/doc/install)
-
-## Build 
-
-```sh
-$ git clone https://github.com/turbot/steampipe-plugin-hypothesis.git
-
-$ cd steampipe-plugin-hypothesis
-
-$ make # builds, then puts the plugin into your `~/.steampipe/plugins` directory
-
-$ cp config/* ~/.steampipe/config # tells steampipe to load the plugin
-```
-
-## Try it!
+Install the plugin with [Steampipe](https://steampipe.io):
 
 ```shell
-$ steampipe query
+steampipe plugin install hypothesis
 ```
+
+Configure your [credentials](https://hub.steampipe.io/plugins/turbot/hypothesis#credentials) and [config file](https://hub.steampipe.io/plugins/turbot/hypothesis#configuration).
+
+Run a query:
 
 ```sql
   select 
     "user",
+    created,
     tags
   from 
     hypothesis_search 
   where 
-    query = 'uri=https://www.example.com'
-  and jsonb_array_length(tags) > 0
-  and "user" !~ 'judell'
+    query = 'uri=https://www.example.com';
 ```
+## Developing
+
+Prerequisites:
+
+- [Steampipe](https://steampipe.io/downloads)
+- [Golang](https://golang.org/doc/install)
+
+Clone:
+
+```sh
+git clone https://github.com/turbot/steampipe-plugin-hypothesis.git
+cd steampipe-plugin-hypothesis
+```
+
+Build, which automatically installs the new version to your `~/.steampipe/plugins` directory:
+
+```sh
+make
+```
+
+Configure the plugin:
+
+```sh
+cp config/* ~/.steampipe/config
+emacs ~/.steampipe/config/hypothesis.spc
+```
+
+Try it!
 
 ```shell
-   user   |                             tags
-----------+--------------------------------------------------------------
- robins80 | ["rikersierra1"]
- robins80 | ["HypothesisTest", "3219099"]
- robins80 | ["HypothesisTest", "3219099"]
- ryany25  | ["asdf;", "asdfaasdf"]
- ryany25  | ["T-cell acute lymphoblastic leukemia-associated antigen 1"]
+steampipe query
+> .inspect hypothesis
 ```
 
-## API token
+Further reading:
 
-The token is optional. Without it, you can still query the Hypothesis public layer. 
+- [Writing plugins](https://steampipe.io/docs/develop/writing-plugins)
+- [Writing your first table](https://steampipe.io/docs/develop/writing-your-first-table)
 
-If you are a Hypothesis user wanting to query your own private notes, or notes in private groups you belong to, then log in, open https://hypothes.is/account/developer, generate a token, and copy it into `~/.steampipe/config/hypothesis.spc` like so.
+## Contributing
 
-```hcl
-connection "hypothesis" {
-  plugin  = "hypothesis"
-  token   = "6879-35....3df5"
-}
-```
+Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-plugin-twilio/blob/main/LICENSE).
 
-## Tables and examples
+`help wanted` issues:
 
-[hypothesis_search](https://github.com/turbot/steampipe-plugin-hypothesis/blob/main/docs/tables/hypothesis_search.md)
+- [Steampipe](https://github.com/turbot/steampipe/labels/help%20wanted)
+- [Twilio Plugin](https://github.com/turbot/steampipe-plugin-hypothesis/labels/help%20wanted)
 
-[hypothesis_profile](https://github.com/turbot/steampipe-plugin-hypothesis/blob/main/docs/tables/hypothesis_profile.md)
 
-## Links
-
-Steampipe: [steampipe.io](https://steampipe.io)
-
-Blog: [steampipe.io/blog](https://steampipe.io/blog)
-
-Community: [steampipe.io/community/join](https://steampipe.io/community/join)
 
