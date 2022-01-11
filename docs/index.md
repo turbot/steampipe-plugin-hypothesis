@@ -41,9 +41,10 @@ List annotations on `www.example.com`, with at least one tag, by a user other th
 
 ## Documentation
 
+- **[Table definitions & examples →](/plugins/turbot/hypothesis/tables)**
+
 ## Get started
 
-- **[Table definitions & examples →](/plugins/turbot/hypothesis/tables)**
 ### Install
 
 Download and install the latest Hypothesis plugin:
