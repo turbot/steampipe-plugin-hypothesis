@@ -1,8 +1,8 @@
 ---
 organization: Turbot
-category: ["media"]
+category: ["internet"]
 icon_url: "/images/plugins/turbot/hypothesis.svg"
-brand_color: "#F22F46"
+brand_color: "#bd1c2b"
 display_name: "Hypothesis"
 short_name: "hypothesis"
 description: "Steampipe plugin to query Hypothesis annotations."
