@@ -1,6 +1,7 @@
 # Table: hypothesis_search
 
-Searches for Hypothesis annotations matching a query. If you [authenticate](../index.md) you'll search the Hypothesis public layer plus all your private annotations, and annotations in private groups you belong to. If you don't authenticate you'll just search the public layer.
+Searches for Hypothesis annotations matching a query. If you [authenticate](https://hub.steampipe.io/plugins/turbot/hypothesis#credentials) you'll search the Hypothesis public layer plus all your private annotations, and annotations in private groups you belong to. If you don't authenticate you'll just search the public layer.
+
 ## Examples
 
 ### Find 10 recent notes, by `judell`, that have tags
@@ -48,7 +49,7 @@ from
   hypothesis_search
 where
   query = 'tag=social+media&tag=peer+review'
-```  
+```
 
 ### Find notes on the New York Times home page, by month
 
@@ -67,11 +68,11 @@ select
   count(*)
 from
   data
-group by 
+group by
   month
 order by
   count desc
-```  
+```
 ### Find URLs and note counts on articles annotated in the Times' Opinion section
 
 ```sql
@@ -86,19 +87,19 @@ with data as (
 select
   count(*),
   uri
-from 
+from
   data
-group by 
+group by
   uri
-order by 
+order by
   count desc
-```  
+```
 
 ### Find page notes (i.e. notes referring to the URL, not a selection) on www.example.com
 
 ```sql
 with target_keys_to_rows as (
-  select 
+  select
     id,
     username,
     created,
@@ -118,9 +119,9 @@ with target_keys_to_rows as (
 select distinct
   'https://hypothes.is/a/' || id as link,
   *
-from 
+from
   target_keys_to_rows
-where 
+where
   target_key = 'Selector'
   and target->0->>'Selector' is null
 order by
@@ -143,7 +144,7 @@ where
   and exact ~* 'covid'
 order by
   created desc
-```  
+```
 
 ### Find annotated GitHub repos, join with info from GitHub API
 
@@ -154,7 +155,7 @@ with annotated_urls as (
   select
     regexp_matches(uri, 'github.com/([^/]+)/([^/]+)') as match,
     *
-  from 
+  from
     hypothesis_search
   where
     query = 'wildcard_uri=http://github.com/*&limit=1000'
@@ -165,9 +166,9 @@ and_repos as (
   select
     *,
     match[1] || '/' || match[2] as repository_full_name
-from 
+from
   annotated_urls
-order by 
+order by
   uri
 )
 select distinct
@@ -177,9 +178,9 @@ select distinct
   r.uri,
   r.id,
   r.username
-from 
+from
   github_repository g
-join 
+join
   and_repos r
 on
   g.full_name = r.repository_full_name
@@ -194,8 +195,8 @@ with annotated_urls as (
     created,
     uri,
     username,
-    regexp_matches(uri, 'github.com/([^/]+)/([^/]+)') as match    
-  from 
+    regexp_matches(uri, 'github.com/([^/]+)/([^/]+)') as match
+  from
     hypothesis_search
   where
     query = 'wildcard_uri=http://github.com/*&limit=100'
@@ -206,9 +207,9 @@ and_repos as (
   select
     a.*,
     a.match[1] || '/' || a.match[2] as repository_full_name
-from 
+from
   annotated_urls a
-order by 
+order by
   a.uri
 ),
 joined as (
@@ -218,14 +219,14 @@ joined as (
     r.uri,
     r.id,
     r.username
-  from 
+  from
     github_repository g
-  join 
+  join
     and_repos r
   on
     g.full_name = r.repository_full_name
 )
-select 
+select
   count(j.*),
   j.name,
   j.owner_login,
@@ -242,7 +243,7 @@ order by
 
 ### Fetch the most recent 10000 annotations
 
-```
+```sql
 select
   *
 from
@@ -251,7 +252,7 @@ where
   query = 'limit=10000'
 ```
 
-**NOTE** When you use `limit` in the query string, it means: If there are `limit` annotations that match your query, fetch all of them. They will be stored in the Steampipe cache for 5 minutes by default, or longer if you add an `options` argument to your `hypothesis.spc` file and adjust the `cache_ttl` to a longer duration. 
+**NOTE** When you use `limit` in the query string, it means: If there are `limit` annotations that match your query, fetch all of them. They will be stored in the Steampipe cache for 5 minutes by default, or longer if you add an `options` argument to your `hypothesis.spc` file and adjust the `cache_ttl` to a longer duration.
 
 ```
 options "connection" {
@@ -264,7 +265,7 @@ options "connection" {
 
 Suppose you have 500,000 annotations and are continuing to accumulate them at the rate of several thousand per day. (This is a real scenario.) You could stash the 500,000 in a table, or in a materialized view, like so:
 
-```
+```sql
 create materialized view my_hypothesis_annotations as (
   select
     *
@@ -275,28 +276,28 @@ create materialized view my_hypothesis_annotations as (
 ) with data;
 ```
 
-You could then merge those with live data like so. 
+You could then merge those with live data like so.
 
-```
+```sql
 with historical as (
   select
     *
   from
-    my_hypothesis_annotations 
+    my_hypothesis_annotations
 ),
 new as (
   select
     *
-  from 
+  from
     hypothesis_search new
   where
     query = 'group=my_group&limit=5000'
     and not exists (
-      select 
+      select
         *
-      from 
+      from
         historical
-      where 
+      where
         historical.id = new.id
     )
 ),
@@ -304,4 +305,3 @@ select * from historical
 union
 select * from new
 ```
-
