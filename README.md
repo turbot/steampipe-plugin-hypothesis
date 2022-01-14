@@ -21,7 +21,7 @@ Run a query:
 
 ```sql
   select 
-    "user",
+    username,
     created,
     tags
   from 
