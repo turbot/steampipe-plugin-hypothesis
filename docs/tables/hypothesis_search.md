@@ -10,7 +10,7 @@ select
   created,
   uri,
   tags,
-  groupid,
+  group_id,
   username
 from
   hypothesis_search

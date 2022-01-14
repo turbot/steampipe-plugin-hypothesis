@@ -26,7 +26,7 @@ func tableHypothesisSearch(ctx context.Context) *plugin.Table {
 			{Name: "created", Type: proto.ColumnType_STRING, Description: "The creation date of the annotation."},
 			{Name: "updated", Type: proto.ColumnType_STRING, Description: "The last update date of the annotation."},
 			{Name: "username", Type: proto.ColumnType_STRING, Transform: transform.FromField("User").Transform(userIdToUsername), Description: "The Hypothesis username of the person who created the annotation."},
-			{Name: "groupid", Type: proto.ColumnType_STRING, Transform: transform.FromField("Group"), Description: "The annotation's group: __world__ or a private group id."},
+			{Name: "group_id", Type: proto.ColumnType_STRING, Transform: transform.FromField("Group"), Description: "The annotation's group: __world__ or a private group id."},
 			{Name: "uri", Type: proto.ColumnType_STRING, Description: "URL of the annotated resource."},
 			{Name: "text", Type: proto.ColumnType_STRING, Description: "Textual body of the annotation, as MarkDown/HTML."},
 			{Name: "tags", Type: proto.ColumnType_JSON, Description: "Tags on the annotation, as a JSONB array of strings."},
@@ -81,7 +81,6 @@ func listSearchResults(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 		searchParams.Limit = m["limit"][0]
 	}
 
-
 	plugin.Logger(ctx).Info("hypothesis.listSearchResults", "searchParams", fmt.Sprintf("%+v", searchParams))
 
 	client := hyp.NewClient(
@@ -108,4 +107,3 @@ func listSearchResults(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 	}
 	return nil, nil
 }
-
