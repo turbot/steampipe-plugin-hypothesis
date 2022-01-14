@@ -19,14 +19,14 @@ List annotations on `www.example.com`, with at least one tag, by a user other th
 
 ```sql
   select 
-    "user",
+    username,
     tags
   from 
     hypothesis_search 
   where 
     query = 'uri=https://www.example.com'
   and jsonb_array_length(tags) > 0
-  and "user" !~ 'judell'
+  and username !~ 'judell'
 ```
 
 ```shell
@@ -52,7 +52,6 @@ Download and install the latest Hypothesis plugin:
 ```bash
 steampipe plugin install twilio
 ```
-
 ### Credentials
 
 | Item | Description |

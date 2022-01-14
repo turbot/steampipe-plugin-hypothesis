@@ -5,15 +5,13 @@ Searches for Hypothesis annotations matching a query. If you [authenticate](../i
 
 ### Find 10 recent notes, by `judell`, that have tags
 
-**NOTE** `group` and `user` are special to Postgres so, for those columns only, you have to double-quote the names.
-
 ```sql
 select
   created,
   uri,
   tags,
-  "group", -- always __world__ if unauthenticated
-  "user"
+  groupid,
+  username
 from
   hypothesis_search
 where
@@ -100,9 +98,9 @@ order by
 
 ```sql
 with target_keys_to_rows as (
-  select
+  select 
     id,
-    "user",
+    username,
     created,
     text,
     uri,
@@ -113,11 +111,11 @@ with target_keys_to_rows as (
   where
     query = 'uri=https://www.example.com'
   group by
-    id, "user", created, text, uri, target
+    id, username, created, text, uri, target
   order by
     id
 )
-select
+select distinct
   'https://hypothes.is/a/' || id as link,
   *
 from 
@@ -135,7 +133,7 @@ order by
 select
   'https://hypothes.is/a/' || id as link,
   uri,
-  "user",
+  username,
   created,
   exact
 from
@@ -178,7 +176,7 @@ select distinct
   g.owner_login,
   r.uri,
   r.id,
-  r."user"
+  r.username
 from 
   github_repository g
 join 
@@ -195,12 +193,12 @@ with annotated_urls as (
     id,
     created,
     uri,
-    "user",
+    username,
     regexp_matches(uri, 'github.com/([^/]+)/([^/]+)') as match    
   from 
     hypothesis_search
   where
-    query = 'wildcard_uri=http://github.com/*&limit=1000'
+    query = 'wildcard_uri=http://github.com/*&limit=100'
   order by
     uri
   ),
@@ -219,7 +217,7 @@ joined as (
     g.owner_login,
     r.uri,
     r.id,
-    r."user"
+    r.username
   from 
     github_repository g
   join 
@@ -242,7 +240,7 @@ order by
   count desc
 ```
 
-### Cache the most recent 10000 annotations, list the most recent 10
+### Fetch the most recent 10000 annotations
 
 ```
 select
@@ -251,8 +249,6 @@ from
   hypothesis_search
 where
   query = 'limit=10000'
-limit
-  10
 ```
 
 **NOTE** When you use `limit` in the query string, it means: If there are `limit` annotations that match your query, fetch all of them. They will be stored in the Steampipe cache for 5 minutes by default, or longer if you add an `options` argument to your `hypothesis.spc` file and adjust the `cache_ttl` to a longer duration. 
@@ -263,8 +259,6 @@ options "connection" {
   cache_ttl = 300 # default 5 minutes
 }
 ```
-
-The SQL `limit` then governs the number of rows that come back from your query. Once the 10,000 rows are cached, subsequent queries that touch the same data happen instantly, and you can use the SQL `limit` to restrict the number of rows returned by those subsequent queries. It's also possible to permanently cache results. 
 
 #### Merging historical and live data
 

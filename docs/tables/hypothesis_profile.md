@@ -8,7 +8,7 @@ If you [authenticate](../index.md), this table reports your Hypothesis username,
 
 ```
 select
-  "user",
+  username,
   display_name,
   authority
 from
@@ -45,9 +45,8 @@ annos as (
 )
 select
   'https://hypothes.is/a/' || a.id as link,
-  a."group",
   g.group_info ->> 'name' as name,
-  a."user",
+  a.username,
   a.created,
   a.title,
   a.uri
@@ -56,7 +55,7 @@ from
 join
   annos a
 on 
-  g.group_info ->> 'id' = a."group"
+  g.group_info ->> 'id' = a.groupid
 where
   g.group_info ->> 'public' != 'true'
 ```    
@@ -97,8 +96,8 @@ $$ language plpgsql;
 ```
 select
   'https://hypothes.is/a/' || id as link,
-  "group",
-  "user",
+  groupid,
+  username,
   created,
   title,
   uri
@@ -106,7 +105,7 @@ from
   hypothesis_search
 where 
   query = 'limit=500'
-  and hypothesis_is_private_group("group")
+  and hypothesis_is_private_group(groupid)
 ```    
 
 
