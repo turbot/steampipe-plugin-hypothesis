@@ -20,6 +20,7 @@ Configure your [credentials](https://hub.steampipe.io/plugins/turbot/hypothesis#
 Run a query:
 
 ```sql
+<<<<<<< HEAD
 select
   username,
   created,
