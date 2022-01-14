@@ -1,12 +1,12 @@
 # Table: hypothesis_profile
 
-If you [authenticate](../index.md), this table reports your Hypothesis username, display name, authority, and groups.
+If you [authenticate](https://hub.steampipe.io/plugins/turbot/hypothesis#credentials), this table reports your Hypothesis username, display name, authority, and groups.
 
 ## Examples
 
 ### Get your username, display name, and authority
 
-```
+```sql
 select
   username,
   display_name,
@@ -17,7 +17,7 @@ from
 
 ### Get the names and ids of groups you belong to
 
-```
+```sql
 select
   jsonb_array_elements(groups)
 from
@@ -26,7 +26,7 @@ from
 
 ### Among the most recent 500 notes, find those in your private groups (method 1)
 
-```
+```sql
 with groups as (
   select
     jsonb_array_elements(groups) as group_info
@@ -38,7 +38,7 @@ annos as (
     *
   from
     hypothesis_search
-  where 
+  where
     query = 'limit=500'
   order by
     created desc
@@ -50,15 +50,15 @@ select
   a.created,
   a.title,
   a.uri
-from 
+from
   groups g
 join
   annos a
-on 
+on
   g.group_info ->> 'id' = a.group_id
 where
   g.group_info ->> 'public' != 'true'
-```    
+```
 
 ### Among the most recent 500 notes, find those in your private groups (method 2)
 
@@ -68,7 +68,7 @@ where
 
 **NOTE** Steampipe plugins put their tables into Postgres schemas (namespaces) that match the names of the plugins. So tables in this plugin are actually `hypothesis.hypothesis_search` and `hypothesis.hypothesis_profile`. The examples here don't qualify table names with schemas because if there is no confict with another schema it's unnecessary. When you create functions, though, they live in Postgres' global namespace. Nothing requires you to prepend a schema-like prefix to function names, but it's probably a good idea to do that in order to clarify which plugins they're intended to work with.
 
-```
+```sql
 create function hypothesis_is_private_group (group_id text) returns boolean as $$
   declare is_private boolean;
   begin
@@ -82,7 +82,7 @@ create function hypothesis_is_private_group (group_id text) returns boolean as $
       g.group_info ->> 'public' != 'true'
     from
       groups g
-    where 
+    where
       g.group_info ->> 'id' = group_id
     into
       is_private;
@@ -91,9 +91,9 @@ create function hypothesis_is_private_group (group_id text) returns boolean as $
 $$ language plpgsql;
 ```
 
-#### Use `hypothesis_is_private_group` 
+#### Use `hypothesis_is_private_group`
 
-```
+```sql
 select
   'https://hypothes.is/a/' || id as link,
   group_id,
@@ -101,13 +101,9 @@ select
   created,
   title,
   uri
-from 
+from
   hypothesis_search
-where 
+where
   query = 'limit=500'
   and hypothesis_is_private_group(group_id)
-```    
-
-
-
-
+```

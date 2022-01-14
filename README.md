@@ -20,14 +20,14 @@ Configure your [credentials](https://hub.steampipe.io/plugins/turbot/hypothesis#
 Run a query:
 
 ```sql
-  select 
-    username,
-    created,
-    tags
-  from 
-    hypothesis_search 
-  where 
-    query = 'uri=https://www.example.com';
+select
+  username,
+  created,
+  tags
+from
+  hypothesis_search
+where
+  query = 'uri=https://www.example.com';
 ```
 ## Developing
 
@@ -53,7 +53,7 @@ Configure the plugin:
 
 ```sh
 cp config/* ~/.steampipe/config
-emacs ~/.steampipe/config/hypothesis.spc
+vi ~/.steampipe/config/hypothesis.spc
 ```
 
 Try it!
@@ -70,12 +70,9 @@ Further reading:
 
 ## Contributing
 
-Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-plugin-twilio/blob/main/LICENSE).
+Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-plugin-hypothesis/blob/main/LICENSE).
 
 `help wanted` issues:
 
 - [Steampipe](https://github.com/turbot/steampipe/labels/help%20wanted)
-- [Twilio Plugin](https://github.com/turbot/steampipe-plugin-hypothesis/labels/help%20wanted)
-
-
-
+- [Hypothesis Plugin](https://github.com/turbot/steampipe-plugin-hypothesis/labels/help%20wanted)
