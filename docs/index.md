@@ -54,6 +54,7 @@ Download and install the latest Hypothesis plugin:
 ```bash
 steampipe plugin install hypothesis
 ```
+
 ### Credentials
 
 | Item | Description |
@@ -66,11 +67,11 @@ Installing the latest hypothesis plugin will create a config file (`~/.steampipe
 
 If you are a Hypothesis user wanting to query your own private notes, or notes in private groups you belong to, then uncomment `#token` and provide your API token.
 
-  ```hcl
-  connection "hypothesis" {
-    plugin  = "hypothesis"
-    #token   = "6879-35....3df5"
-  }
+```hcl
+connection "hypothesis" {
+  plugin = "hypothesis"
+  #token = "6879-35....3df5"
+}
 ```
 
 ## Get involved
