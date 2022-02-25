@@ -34,6 +34,8 @@ func tableHypothesisSearch(ctx context.Context) *plugin.Table {
 			{Name: "document", Type: proto.ColumnType_JSON, Description: "An element that contains the title and maybe other metadata."},
 			{Name: "target", Type: proto.ColumnType_JSON, Description: "The selectors that define the document selection to which the annotation anchors."},
 			{Name: "exact", Type: proto.ColumnType_STRING, Transform: transform.FromField("Target").Transform(selectorsToExact), Description: "The text of the selection (aka quote) to which the annotation anchors."},
+			{Name: "refs", Type: proto.ColumnType_JSON, Transform: transform.FromField("References"), Description: "IDs forming the reference chain to which this annotation belongs."},
+
 		},
 	}
 }
