@@ -239,6 +239,37 @@ group by
 order by
   count desc
 ```
+### Find URIs with conversational threads spanning more than one day
+
+```
+with thread_data as (
+  select
+    uri,
+    count(*),
+    min(created) as first,
+    max(created) as last,
+    sum(jsonb_array_length(refs)) as refs,
+    array_agg(distinct username) as thread_participants
+  from 
+    hypothesis_search
+  where 
+    query = 'limit=1000' 
+  group by uri	
+)
+select
+  uri,
+  count as annos,
+  refs,
+  first,
+  last,
+  date(last) - date(first) as days,
+  thread_participants
+from 
+ thread_data
+where
+  date(last) - date(first) > 0
+  and refs is not null
+```
 
 ### Fetch the most recent 10000 annotations
 
