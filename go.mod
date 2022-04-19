@@ -1,6 +1,6 @@
 module github.com/turbot/steampipe-plugin-hypothesis
 
-go 1.16
+go 1.18
 
 require github.com/turbot/steampipe-plugin-sdk v1.8.2
 
