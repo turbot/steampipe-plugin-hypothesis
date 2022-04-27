@@ -1,8 +1,26 @@
 module github.com/turbot/steampipe-plugin-hypothesis
 
-go 1.16
+go 1.18
 
-require github.com/turbot/steampipe-plugin-sdk v1.8.2
+require github.com/turbot/steampipe-plugin-sdk/v3 v3.1.0
+
+require (
+	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d // indirect
+	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
+	github.com/btubbs/datetime v0.1.1 // indirect
+	github.com/dustin/go-humanize v1.0.0 // indirect
+	github.com/gertd/go-pluralize v0.2.0 // indirect
+	github.com/ghodss/yaml v1.0.0 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/hashicorp/go-version v1.4.0 // indirect
+	github.com/mattn/go-isatty v0.0.14 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
+	github.com/rivo/uniseg v0.2.0 // indirect
+	github.com/sethvargo/go-retry v0.1.0 // indirect
+	github.com/turbot/go-kit v0.3.0 // indirect
+	golang.org/x/sys v0.0.0-20211102061401-a2f17f7b995c // indirect
+	google.golang.org/protobuf v1.28.0 // indirect
+)
 
 require (
 	github.com/agext/levenshtein v1.2.3 // indirect
@@ -12,7 +30,7 @@ require (
 	github.com/golang/glog v1.0.0 // indirect
 	github.com/hashicorp/go-hclog v1.0.0 // indirect
 	github.com/hashicorp/go-plugin v1.4.3 // indirect
-	github.com/hashicorp/hcl/v2 v2.10.1 // indirect
+	github.com/hashicorp/hcl/v2 v2.11.1 // indirect
 	github.com/hashicorp/yamux v0.0.0-20211028200310-0bc27b27de87 // indirect
 	github.com/iancoleman/strcase v0.2.0 // indirect
 	github.com/judell/hypothesis-go v0.2.1
@@ -25,10 +43,10 @@ require (
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/stevenle/topsort v0.2.0 // indirect
 	github.com/tkrajina/go-reflector v0.5.5 // indirect
-	github.com/zclconf/go-cty v1.9.1 // indirect
+	github.com/zclconf/go-cty v1.10.0 // indirect
 	golang.org/x/net v0.0.0-20211029224645-99673261e6eb // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/genproto v0.0.0-20211029142109-e255c875f7c7 // indirect
-	google.golang.org/grpc v1.41.0 // indirect
+	google.golang.org/grpc v1.44.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
