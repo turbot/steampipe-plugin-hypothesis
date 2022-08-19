@@ -1,3 +1,6 @@
+## v0.1.1 [2022-08-18]
+
+- Update to github.com/judell/hypothesis-go@v0.2.4 which handles a breaking change in the Hypothesis API
 ## v0.1.0 [2022-04-27]
 
 _Enhancements_
