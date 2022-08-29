@@ -7,9 +7,9 @@ import (
 	"os"
 
 	hyp "github.com/judell/hypothesis-go"
-	"github.com/turbot/steampipe-plugin-sdk/v3/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v3/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v3/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
 )
 
 func tableHypothesisSearch(ctx context.Context) *plugin.Table {
@@ -35,7 +35,6 @@ func tableHypothesisSearch(ctx context.Context) *plugin.Table {
 			{Name: "target", Type: proto.ColumnType_JSON, Description: "The selectors that define the document selection to which the annotation anchors."},
 			{Name: "exact", Type: proto.ColumnType_STRING, Transform: transform.FromField("Target").Transform(selectorsToExact), Description: "The text of the selection (aka quote) to which the annotation anchors."},
 			{Name: "refs", Type: proto.ColumnType_JSON, Transform: transform.FromField("References"), Description: "IDs forming the reference chain to which this annotation belongs."},
-
 		},
 	}
 }
@@ -96,7 +95,7 @@ func listSearchResults(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 	i := 0
 	for row := range client.SearchAll() {
 		i += 1
-		if i % 500 == 0 {
+		if i%500 == 0 {
 			plugin.Logger(ctx).Info("hypothesis.listSearchResults", "row", fmt.Sprintf(`%d`, i))
 		}
 

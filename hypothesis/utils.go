@@ -1,12 +1,12 @@
 package hypothesis
 
 import (
-	"regexp"
 	"context"
+	"regexp"
 
 	hyp "github.com/judell/hypothesis-go"
-	"github.com/turbot/steampipe-plugin-sdk/v3/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v3/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
 )
 
 func queryString(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
@@ -27,7 +27,7 @@ func documentToTitle(ctx context.Context, input *transform.TransformData) (inter
 		Title []string "json:\"title\""
 	})
 	if len(doc.Title) == 0 {
-		return "untitled",  nil
+		return "untitled", nil
 	}
 	return doc.Title[0], nil
 }
@@ -50,7 +50,8 @@ func userIdToUsername(ctx context.Context, input *transform.TransformData) (inte
 }
 
 func userInfoToDisplayName(ctx context.Context, input *transform.TransformData) (interface{}, error) {
-	userInfo := input.Value.(struct {DisplayName string `json:"display_name"`})
+	userInfo := input.Value.(struct {
+		DisplayName string `json:"display_name"`
+	})
 	return userInfo.DisplayName, nil
 }
-
