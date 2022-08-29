@@ -1,6 +1,14 @@
+## v0.2.0 [2022-08-29]
+
+_Dependencies_
+
+- Recompiled plugin with [steampipe-plugin-sdk v4.1.4](https://github.com/turbot/steampipe-plugin-sdk/blob/main/CHANGELOG.md#v414-2022-08-26) which includes several caching and memory management improvements. ([#11](https://github.com/turbot/steampipe-plugin-hypothesis/pull/11))
+- Recompiled plugin with Go version `1.19`. ([#11](https://github.com/turbot/steampipe-plugin-hypothesis/pull/11))
+
 ## v0.1.1 [2022-08-18]
 
-- Update to github.com/judell/hypothesis-go@v0.2.4 which handles a breaking change in the Hypothesis API
+- Recompile plugin with `github.com/judell/hypothesis-go@v0.2.4` which handles a breaking change in the Hypothesis API. ([#10](https://github.com/turbot/steampipe-plugin-hypothesis/pull/10)) 
+
 ## v0.1.0 [2022-04-27]
 
 _Enhancements_
