@@ -2,9 +2,9 @@ package hypothesis
 
 import (
 	"context"
-	//"github.com/turbot/steampipe-plugin-sdk/v3/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v3/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v3/plugin/transform"
+	//"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
 )
 
 func Plugin(ctx context.Context) *plugin.Plugin {
@@ -16,7 +16,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 		},
 		DefaultTransform: transform.FromJSONTag().NullIfZero(),
 		TableMap: map[string]*plugin.Table{
-			"hypothesis_search": tableHypothesisSearch(ctx),
+			"hypothesis_search":  tableHypothesisSearch(ctx),
 			"hypothesis_profile": tableHypothesisProfile(ctx),
 		},
 	}
