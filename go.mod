@@ -2,7 +2,7 @@ module github.com/turbot/steampipe-plugin-hypothesis
 
 go 1.19
 
-require github.com/turbot/steampipe-plugin-sdk/v4 v4.1.4
+require github.com/turbot/steampipe-plugin-sdk/v4 v4.1.7
 
 require (
 	github.com/XiaoMi/pegasus-go-client v0.0.0-20210427083443-f3b6b08bc4c2 // indirect
@@ -63,7 +63,7 @@ require (
 	github.com/dgraph-io/ristretto v0.1.0 // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/golang/glog v1.0.0 // indirect
-	github.com/hashicorp/go-hclog v1.2.0 // indirect
+	github.com/hashicorp/go-hclog v1.2.2 // indirect
 	github.com/hashicorp/go-plugin v1.4.4 // indirect
 	github.com/hashicorp/hcl/v2 v2.12.0 // indirect
 	github.com/hashicorp/yamux v0.0.0-20211028200310-0bc27b27de87 // indirect
