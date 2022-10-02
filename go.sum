@@ -273,8 +273,8 @@ github.com/json-iterator/go v1.1.12/go.mod h1:e30LSqwooZae/UwlEbR2852Gd8hjQvJoHm
 github.com/jstemmer/go-junit-report v0.0.0-20190106144839-af01ea7f8024/go.mod h1:6v2b51hI/fHJwM22ozAgKL4VKDeJcHhJFhtBdhmNjmU=
 github.com/jstemmer/go-junit-report v0.9.1/go.mod h1:Brl9GWCQeLvo8nXZwPNNblvFj/XSXhF0NWZEnDohbsk=
 github.com/jtolds/gls v4.20.0+incompatible h1:xdiiI2gbIgH/gLH7ADydsJ1uDOEzR8yvV7C0MuV77Wo=
-github.com/judell/hypothesis-go v0.2.4 h1:j+RUIupkgkucDygsETZy2O/ks0326gcoBR3xZy+AsrE=
-github.com/judell/hypothesis-go v0.2.4/go.mod h1:FdrWsJLqnw/lVSiUpDwoIBrGKjGfCFtqyFwniLuvQ5o=
+github.com/judell/hypothesis-go v0.2.6 h1:YH1PWwsHWqWCjtpZQZS2ur/LGIfsOvuSUO76RPYd9h0=
+github.com/judell/hypothesis-go v0.2.6/go.mod h1:FdrWsJLqnw/lVSiUpDwoIBrGKjGfCFtqyFwniLuvQ5o=
 github.com/julienschmidt/httprouter v1.2.0/go.mod h1:SYymIcj16QtmaHHD7aYtjjsJG7VTCxuUUipMqKk8s4w=
 github.com/julienschmidt/httprouter v1.3.0/go.mod h1:JR6WtHb+2LUe8TCKY3cZOxFyyO8IZAc4RVcycCCAKdM=
 github.com/kisielk/errcheck v1.2.0/go.mod h1:/BMXB+zMLi60iA8Vv6Ksmxu/1UDYcXs4uQLJ+jE2L00=
