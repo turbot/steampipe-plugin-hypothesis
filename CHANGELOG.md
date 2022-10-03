@@ -1,3 +1,9 @@
+## v0.3.1 [2022-10-03]
+
+_Dependencies_
+
+- Recompiled plugin with [hypothesis-go v0.2.6](https://github.com/judell/hypothesis-go/releases/tag/v0.2.6) which includes a regression fix.
+
 ## v0.3.0 [2022-09-28]
 
 _Dependencies_
