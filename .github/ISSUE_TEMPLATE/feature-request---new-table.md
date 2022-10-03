@@ -1,7 +1,7 @@
 ---
 name: Feature request - New table
 about: Suggest a new table for this project
-title: Add table hackernews_<resource>
+title: Add table hypothesis_<resource>
 labels: enhancement, new table
 assignees: ''
 
