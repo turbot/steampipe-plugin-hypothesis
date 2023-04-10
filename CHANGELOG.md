@@ -1,3 +1,9 @@
+## v0.4.0 [2023-04-10]
+
+_Dependencies_
+
+- Recompiled plugin with [steampipe-plugin-sdk v5.3.0](https://github.com/turbot/steampipe-plugin-sdk/blob/main/CHANGELOG.md#v530-2023-03-16) which includes fixes for query cache pending item mechanism and aggregator connections not working for dynamic tables. ([#17](https://github.com/turbot/steampipe-plugin-hypothesis/pull/17))
+
 ## v0.3.1 [2022-10-03]
 
 _Dependencies_
@@ -19,7 +25,7 @@ _Dependencies_
 
 ## v0.1.1 [2022-08-18]
 
-- Recompile plugin with `github.com/judell/hypothesis-go@v0.2.4` which handles a breaking change in the Hypothesis API. ([#10](https://github.com/turbot/steampipe-plugin-hypothesis/pull/10)) 
+- Recompile plugin with `github.com/judell/hypothesis-go@v0.2.4` which handles a breaking change in the Hypothesis API. ([#10](https://github.com/turbot/steampipe-plugin-hypothesis/pull/10))
 
 ## v0.1.0 [2022-04-27]
 
