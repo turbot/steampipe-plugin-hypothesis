@@ -1,10 +1,20 @@
-# Table: hypothesis_search
+---
+title: "Steampipe Table: hypothesis_search - Query Hypothesis Searches using SQL"
+description: "Allows users to query Hypothesis Searches, specifically the annotations and their corresponding details, providing insights into user annotations and potential patterns."
+---
 
-Searches for Hypothesis annotations matching a query. If you [authenticate](https://hub.steampipe.io/plugins/turbot/hypothesis#credentials) you'll search the Hypothesis public layer plus all your private annotations, and annotations in private groups you belong to. If you don't authenticate you'll just search the public layer.
+# Table: hypothesis_search - Query Hypothesis Searches using SQL
+
+Hypothesis is a service that allows users to annotate web pages and PDFs, fostering conversations within the text. It is used by educators, journalists, publishers, and researchers to anchor discussions, express opinions, and share insights directly on top of digital content. Hypothesis Searches are a resource within this service that allows users to query and retrieve these annotations.
+
+## Table Usage Guide
+
+The `hypothesis_search` table provides insights into Hypothesis Searches within the Hypothesis service. As a researcher or educator, explore annotation-specific details through this table, including the text, tags, and user who made the annotation. Utilize it to uncover information about annotations, such as those with specific tags, the users who made them, and their corresponding details.
 
 ## Examples
 
 ### Find 10 recent notes, by `judell`, that have tags
+Explore the recent activity of a specific user, 'judell', to identify instances where they have added tags to their notes. This is useful for understanding their areas of interest and their tagging habits.
 
 ```sql
 select
@@ -23,11 +33,12 @@ order by
 limit 10;
 ```
 ### Find notes tagged with both `media` and `review`
-
+Explore the instances where notes are tagged with both 'media' and 'review', allowing you to focus on specific areas of interest. This can be particularly useful when you're looking for overlaps in topics or themes.
 **NOTE** This matches notes with:
 - "media" and "review"
 - "social media" and "review"
 - "social media" and "peer review"
+
 
 ```sql
 select
@@ -40,6 +51,7 @@ where
 ```
 
 ### Find notes tagged with `social media` and `peer review`
+Explore the instances where notes are tagged with both 'social media' and 'peer review', which can be useful for understanding the intersection of these two topics in your data.
 
 ```sql
 select
@@ -52,6 +64,7 @@ where
 ```
 
 ### Find notes on the New York Times home page, by month
+Explore the frequency of annotations made on the New York Times homepage in a given month. This can help you understand the level of engagement or significant events during specific periods.
 
 ```sql
 with data as (
@@ -74,6 +87,7 @@ order by
   count desc
 ```
 ### Find URLs and note counts on articles annotated in the Times' Opinion section
+Explore which articles in the Times' Opinion section have been annotated and understand the frequency of these annotations. This can be useful to identify the most discussed or controversial articles.
 
 ```sql
 with data as (
@@ -96,6 +110,7 @@ order by
 ```
 
 ### Find page notes (i.e. notes referring to the URL, not a selection) on www.example.com
+Determine the instances where notes were made on the entire webpage of www.example.com, rather than a specific selection. This is useful for identifying overall feedback or comments about the webpage as a whole.
 
 ```sql
 with target_keys_to_rows as (
@@ -129,6 +144,7 @@ order by
 ```
 
 ### Find notes, in the Times' Opinion section, that quote selections matching "covid"
+Discover the segments that quote selections matching a specific term within the Times' Opinion section. This is useful for exploring user-generated annotations and comments on current events or trending topics, such as 'covid'.
 
 ```sql
 select
@@ -147,8 +163,9 @@ order by
 ```
 
 ### Find annotated GitHub repos, join with info from GitHub API
-
+Explore annotated GitHub repositories and gain insights into their associated details from the GitHub API. This can help you identify patterns or trends in the data, enhancing your understanding of these repositories.
 **NOTE** This will take a minute or so. Once it's done, it's cached for 5 minutes, or another duration you can specify, so queries that touch the same data are instantaneous.
+
 
 ```sql
 with annotated_urls as (
@@ -187,6 +204,7 @@ on
 ```
 
 ### Order annotated GitHub repos by count of annotations
+This query is used to analyze the frequency of annotations made by users on different GitHub repositories. It can be beneficial to identify which repositories are receiving the most attention or interaction, potentially indicating areas of high interest or activity.
 
 ```sql
 with annotated_urls as (
@@ -273,6 +291,7 @@ where
 ```
 
 ### Fetch the most recent 10000 annotations
+Determine the areas in which the most recent 10,000 annotations exist. This is useful for gaining insights into the latest trends and patterns in your data, especially when dealing with large volumes of annotations that are continuously accumulating.
 
 ```sql
 select
