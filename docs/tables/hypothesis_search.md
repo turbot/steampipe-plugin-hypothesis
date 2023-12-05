@@ -11,6 +11,9 @@ Hypothesis is a service that allows users to annotate web pages and PDFs, foster
 
 The `hypothesis_search` table provides insights into Hypothesis Searches within the Hypothesis service. As a researcher or educator, explore annotation-specific details through this table, including the text, tags, and user who made the annotation. Utilize it to uncover information about annotations, such as those with specific tags, the users who made them, and their corresponding details.
 
+**Important Notes**
+- Searches for Hypothesis annotations matching a query. If you [authenticate](https://hub.steampipe.io/plugins/turbot/hypothesis#credentials) you'll search the Hypothesis public layer plus all your private annotations, and annotations in private groups you belong to. If you don't authenticate you'll just search the public layer.
+
 ## Examples
 
 ### Find 10 recent notes, by `judell`, that have tags
@@ -269,11 +272,11 @@ with thread_data as (
     max(created) as last,
     sum(jsonb_array_length(refs)) as refs,
     array_agg(distinct username) as thread_participants
-  from 
+  from
     hypothesis_search
-  where 
-    query = 'limit=1000' 
-  group by uri	
+  where
+    query = 'limit=1000'
+  group by uri
 )
 select
   uri,
@@ -283,7 +286,7 @@ select
   last,
   date(last) - date(first) as days,
   thread_participants
-from 
+from
  thread_data
 where
   date(last) - date(first) > 0
