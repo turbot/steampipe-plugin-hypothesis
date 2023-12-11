@@ -8,6 +8,7 @@ short_name: "hypothesis"
 description: "Steampipe plugin to query Hypothesis annotations."
 og_description: "Query Hypothesis with SQL! Open source CLI. No DB required."
 og_image: "/images/plugins/turbot/hypothesis-social-graphic.png"
+engines: ["steampipe", "sqlite", "postgres", "export"]
 ---
 # Hypothesis + Steampipe
 
