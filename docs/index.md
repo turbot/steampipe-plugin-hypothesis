@@ -8,12 +8,13 @@ short_name: "hypothesis"
 description: "Steampipe plugin to query Hypothesis annotations."
 og_description: "Query Hypothesis with SQL! Open source CLI. No DB required."
 og_image: "/images/plugins/turbot/hypothesis-social-graphic.png"
+engines: ["steampipe", "sqlite", "postgres", "export"]
 ---
 # Hypothesis + Steampipe
 
 [Hypothesis](https://hypothes.is) is a web annnotation system.
 
-[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
+[Steampipe](https://steampipe.io) is an open-source zero-ETL engine to instantly query cloud APIs using SQL.
 
 List annotations on `www.example.com`, with at least one tag, by a user other than `judell`:
 
@@ -74,7 +75,4 @@ connection "hypothesis" {
 }
 ```
 
-## Get involved
 
-- Open source: https://github.com/turbot/steampipe-plugin-hypothesis
-- Community: [Join #steampipe on Slack →](https://turbot.com/community/join)
