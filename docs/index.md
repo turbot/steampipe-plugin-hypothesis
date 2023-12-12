@@ -14,7 +14,7 @@ engines: ["steampipe", "sqlite", "postgres", "export"]
 
 [Hypothesis](https://hypothes.is) is a web annnotation system.
 
-[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
+[Steampipe](https://steampipe.io) is an open-source zero-ETL engine to instantly query cloud APIs using SQL.
 
 List annotations on `www.example.com`, with at least one tag, by a user other than `judell`:
 
