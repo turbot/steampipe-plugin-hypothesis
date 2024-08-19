@@ -1,10 +1,9 @@
 module github.com/turbot/steampipe-plugin-hypothesis
 
 go 1.21.0
+toolchain go1.22.5
 
-toolchain go1.21.1
-
-require github.com/turbot/steampipe-plugin-sdk/v5 v5.10.1
+require github.com/turbot/steampipe-plugin-sdk/v5 v5.10.3
 
 require (
 	cloud.google.com/go v0.112.0 // indirect
