@@ -1,10 +1,10 @@
 module github.com/turbot/steampipe-plugin-hypothesis
 
-go 1.23.1
+go 1.24
 
-toolchain go1.23.2
+toolchain go1.24.1
 
-require github.com/turbot/steampipe-plugin-sdk/v5 v5.11.7
+require github.com/turbot/steampipe-plugin-sdk/v5 v5.13.0
 
 require (
 	cloud.google.com/go v0.112.1 // indirect
@@ -72,7 +72,7 @@ require (
 	golang.org/x/crypto v0.36.0 // indirect
 	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
 	golang.org/x/mod v0.19.0 // indirect
-	golang.org/x/oauth2 v0.21.0 // indirect
+	golang.org/x/oauth2 v0.27.0 // indirect
 	golang.org/x/sync v0.12.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
